@@ -1,51 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Humble Design | 50/50 Raffle</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <title>Humble Design Raffle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --accent: #38bdf8;
-            --money: #4ade80;
-            --bg: #020617;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
-            background-color: var(--bg);
-            background: linear-gradient(45deg, #020617, #0f172a, #1e1b4b);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            margin: 0;
+            padding: 20px;
+            background: #020617;
             color: white;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
         }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .container {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            padding: 2rem;
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
             border-radius: 30px;
             text-align: center;
-            width: 90%;
-            max-width: 550px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
+        .status {
+            color: #38bdf8;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        #timer {
+            font-size: 45px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #f8fafc;
+        }
+        .note {
+            background: rgba(56, 189, 248, 0.1);
+            color: #38bdf8;
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .stat-box {
+            background: rgba(255,255,255,0.03);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .label { font-size: 11px; opacity: 0.5; text-transform: uppercase; margin-bottom: 5px; }
+        .value { font-size: 24px; font-weight: 700; }
+        .green { color: #4ade80; }
+        
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .btn {
+            flex: 1;
+            padding: 15px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+        .btn-info { background: rgba(255,255,255,0.1); color: white; }
+        .btn-mail { background: white; color: black; }
+        .btn:hover { transform: translateY(-3px); opacity: 0.9; }
+    </style>
+</head>
+<body>
 
-        .live-indicator {
+    <div class="card">
+        <div class="status" id="status-text">Countdown</div>
+        <div id="timer">00:00:00:00</div>
+
+        <div class="note">
+            🎟️ Tickets sold at lunch, 1 dollar per entry
+        </div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="label">Current Pot</div>
+                <div class="value" id="pot-display">$0</div>
+            </div>
+            <div class="stat-box">
+                <div class="label">Student Win (50%)</div>
+                <div class="
