@@ -186,8 +186,9 @@
     <script>
         // --- CONFIGURATION ---
         const currentMoney = 85; 
-        // Accurate deadline: Friday, March 20, 2026 @ 2:25 PM
-        const endDate = new Date("March 20, 2026 14:25:00").getTime();
+        
+        // Target: March 20, 2026 at 2:25 PM (14:25)
+        const endDate = new Date("2026-03-20T14:25:00").getTime();
 
         function update() {
             const now = new Date().getTime();
@@ -197,6 +198,7 @@
                 document.getElementById('status-label').innerText = "EVENT CLOSED";
                 document.getElementById('timer').innerText = "00:00:00:00";
                 document.getElementById('dot').style.background = "#ef4444";
+                document.getElementById('dot').style.animation = "none";
                 return;
             }
 
