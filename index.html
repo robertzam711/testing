@@ -152,7 +152,7 @@
     <div class="container">
         <div class="live-indicator">
             <div class="pulse" id="dot"></div>
-            <span id="status-label">SYSTEM READY</span>
+            <span id="status-label">LIVE: RAFFLE CLOSING</span>
         </div>
 
         <h1>Humble Design Fundraiser</h1>
@@ -186,22 +186,17 @@
     <script>
         // --- CONFIGURATION ---
         const currentMoney = 85; 
-        // Set to Friday, March 20, 2026 at 2:25 PM
+        // Accurate deadline: Friday, March 20, 2026 @ 2:25 PM
         const endDate = new Date("March 20, 2026 14:25:00").getTime();
 
         function update() {
             const now = new Date().getTime();
-            let distance = endDate - now;
-            let label;
+            const distance = endDate - now;
 
-            if (distance > 0) {
-                label = "LIVE: RAFFLE CLOSING";
-                document.getElementById('dot').style.background = "#ef4444";
-            } else {
+            if (distance < 0) {
                 document.getElementById('status-label').innerText = "EVENT CLOSED";
-                document.getElementById('timer').innerText = "00:00:00";
-                document.getElementById('dot').style.background = "#334155";
-                document.getElementById('dot').style.animation = "none";
+                document.getElementById('timer').innerText = "00:00:00:00";
+                document.getElementById('dot').style.background = "#ef4444";
                 return;
             }
 
@@ -212,8 +207,7 @@
 
             const pad = (n) => n.toString().padStart(2, '0');
 
-            document.getElementById('status-label').innerText = label;
-            document.getElementById('timer').innerText = `${d}:${pad(h)}:${pad(m)}:${pad(s)}`;
+            document.getElementById('timer').innerText = `${pad(d)}:${pad(h)}:${pad(m)}:${pad(s)}`;
             
             // MATH ENGINE
             document.getElementById('total-val').innerText = `$${currentMoney.toLocaleString()}`;
