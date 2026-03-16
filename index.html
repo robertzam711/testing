@@ -185,26 +185,23 @@
 
     <script>
         // --- CONFIGURATION ---
-        const currentMoney = 85; // THE ONLY NUMBER YOU NEED TO CHANGE
-        const targetDate = new Date("March 20, 2026 14:25:00").getTime();
+        const currentMoney = 85; 
+        // Set to Friday, March 20, 2026 at 2:25 PM
         const endDate = new Date("March 20, 2026 14:25:00").getTime();
 
         function update() {
             const now = new Date().getTime();
-            let distance;
+            let distance = endDate - now;
             let label;
 
-            if (now < targetDate) {
-                distance = targetDate - now;
-                label = "COUNTDOWN TO START";
-                document.getElementById('dot').style.background = "#38bdf8";
-            } else if (now < endDate) {
-                distance = endDate - now;
+            if (distance > 0) {
                 label = "LIVE: RAFFLE CLOSING";
                 document.getElementById('dot').style.background = "#ef4444";
             } else {
                 document.getElementById('status-label').innerText = "EVENT CLOSED";
                 document.getElementById('timer').innerText = "00:00:00";
+                document.getElementById('dot').style.background = "#334155";
+                document.getElementById('dot').style.animation = "none";
                 return;
             }
 
